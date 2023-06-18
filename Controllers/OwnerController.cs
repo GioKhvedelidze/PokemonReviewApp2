@@ -20,7 +20,7 @@ public class OwnerController : Controller
     [ProducesResponseType(200, Type = typeof(IEnumerable<Owner>))]
     public IActionResult GetOwners()
     {
-        var owners = _ownerRepository;
+        var owners = _ownerRepository.GetOwners();
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);

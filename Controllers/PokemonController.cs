@@ -21,7 +21,7 @@ namespace PokemonReviewApp.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Pokemon>))]
         public IActionResult GetPokemons()
         {
-            var pokemons = _pokemonRepository;
+            var pokemons = _pokemonRepository.GetPokemons();
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
