@@ -468,3 +468,5 @@ C:\Users\User\Desktop\New folder\PokemonReviewApp\obj\Debug\net7.0\refint\Pokemo
 C:\Users\User\Desktop\New folder\PokemonReviewApp\obj\Debug\net7.0\PokemonReviewApp.pdb
 C:\Users\User\Desktop\New folder\PokemonReviewApp\obj\Debug\net7.0\PokemonReviewApp.genruntimeconfig.cache
 C:\Users\User\Desktop\New folder\PokemonReviewApp\obj\Debug\net7.0\ref\PokemonReviewApp.dll
+C:\Users\User\Desktop\New folder\PokemonReviewApp\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\User\Desktop\New folder\PokemonReviewApp\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
