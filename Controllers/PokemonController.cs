@@ -2,7 +2,7 @@
 using PokemonReviewApp.Data;
 using PokemonReviewApp.Interfaces;
 using PokemonReviewApp.Models;
-//main controller
+//main controller added bt gio
 namespace PokemonReviewApp.Controllers
 {
     [Route("api/[Controller]")]
