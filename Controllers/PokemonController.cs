@@ -2,7 +2,7 @@
 using PokemonReviewApp.Data;
 using PokemonReviewApp.Interfaces;
 using PokemonReviewApp.Models;
-
+//main controller
 namespace PokemonReviewApp.Controllers
 {
     [Route("api/[Controller]")]
