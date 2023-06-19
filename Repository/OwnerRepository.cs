@@ -15,6 +15,7 @@ public class OwnerRepository : IOwnerRepository
     
     public ICollection<Owner> GetOwners()
     {
-        return _context.Owners.ToList();
+        return _context.Owners
+            .ToList();
     }
 }
