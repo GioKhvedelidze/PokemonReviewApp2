@@ -58,4 +58,40 @@ public class ReviewerController : Controller
         
         return Ok(reviews);
     }
+    
+    [HttpPost]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    public IActionResult CreateReviewer([FromBody] ReviewerDto reviewerCreate)
+    {
+        if (reviewerCreate == null)
+            return BadRequest(ModelState);
+
+        var reviewerF = _reviewerRepository.GetReviewers()
+            .Where(c => c.FirstName.Trim().ToUpper() == reviewerCreate.FirstName.Trim().ToUpper())
+            .FirstOrDefault();
+        
+        var reviewerL = _reviewerRepository.GetReviewers()
+            .Where(c => c.LastName.Trim().ToUpper() == reviewerCreate.LastName.Trim().ToUpper())
+            .FirstOrDefault();
+
+        if (reviewerF != null && reviewerL != null)
+        {
+            ModelState.AddModelError("","reviewer already exists");
+            return StatusCode(422, ModelState);
+        }
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var reviewerMap = _mapper.Map<Reviewer>(reviewerCreate);
+
+        if (!_reviewerRepository.CreateReviewer(reviewerMap))
+        {
+            ModelState.AddModelError("","Something Went Wrong!");
+            return StatusCode(500, ModelState);
+        }
+
+        return Ok("reviewer Created successfully");
+    }
 }

@@ -92,4 +92,33 @@ public class CountryController : Controller
 
         return Ok("Successfully created");
     }
+    
+    [HttpPut("{countryId}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateCategory(int countryId, [FromBody] CountryDto updateCountry)
+    {
+        if (updateCountry == null)
+            return BadRequest();
+
+        if (countryId != updateCountry.Id)
+            return BadRequest();
+
+        if (!_countryRepository.CountryExists(countryId))
+            return NotFound();
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var countryMap = _mapper.Map<Country>(updateCountry);
+
+        if (!_countryRepository.UpdateCountry(countryMap))
+        {
+            ModelState.AddModelError("", "Updaite Failed");
+            return StatusCode(500, ModelState);
+        }
+
+        return Ok(_countryRepository.GetCountry(countryId));
+    }
 }
