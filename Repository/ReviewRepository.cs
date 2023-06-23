@@ -43,6 +43,13 @@ public class ReviewRepository : IReviewRepository
         return Save();
     }
 
+    public bool UpdateReview(Review review)
+    {
+        _context.Update(review);
+
+        return Save();
+    }
+
     public bool Save()
     {
         {

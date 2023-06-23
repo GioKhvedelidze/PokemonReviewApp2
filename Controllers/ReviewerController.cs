@@ -94,4 +94,33 @@ public class ReviewerController : Controller
 
         return Ok("reviewer Created successfully");
     }
+    
+    [HttpPut("{reviewerId}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateCategory(int reviewerId, [FromBody] ReviewerDto updateReviewer)
+    {
+        if (updateReviewer == null)
+            return BadRequest();
+
+        if (reviewerId != updateReviewer.Id)
+            return BadRequest();
+
+        if (!_reviewerRepository.ReviewerExists(reviewerId))
+            return NotFound();
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var reviewerMap = _mapper.Map<Reviewer>(updateReviewer);
+
+        if (!_reviewerRepository.UpdateReviewer(reviewerMap))
+        {
+            ModelState.AddModelError("", "Update Failed");
+            return StatusCode(500, ModelState);
+        }
+
+        return NoContent();
+    }
 }

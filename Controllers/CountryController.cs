@@ -57,7 +57,6 @@ public class CountryController : Controller
         if (!ModelState.IsValid)
             return BadRequest();
         
-        
         return Ok(country);
     }
     
@@ -115,7 +114,7 @@ public class CountryController : Controller
 
         if (!_countryRepository.UpdateCountry(countryMap))
         {
-            ModelState.AddModelError("", "Updaite Failed");
+            ModelState.AddModelError("", "Update Failed");
             return StatusCode(500, ModelState);
         }
 
